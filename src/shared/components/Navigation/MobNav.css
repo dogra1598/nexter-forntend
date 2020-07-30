@@ -1,0 +1,105 @@
+.mob--nav {
+
+}
+
+.mobNav__checkbox {
+    display: none;
+}
+
+.mobNav__button {
+    text-align: center;
+    cursor: pointer;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 2.5rem;
+    left: 2rem;
+    background-color: #ffcb74;
+    z-index: 200;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+}
+
+.mobNav__background {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 3rem;
+    left: 2.5rem;
+    background: radial-gradient(#000 ,rgba(0, 0, 0, 0.8));
+    z-index: 100;
+
+    transition: all 0.6s;
+}
+
+.mobNav__nav {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 150;
+    transform: translateX(100%);
+
+    transition: all 0.8s;
+}
+
+.mobNav__checkbox:checked ~ .mobNav__background {
+    transform: scale(100);
+}
+
+.mobNav__checkbox:checked ~ .mobNav__nav{
+    transform: translateX(0);
+}
+
+.mobNav__icon {
+    position: relative;
+    margin-top: 1.6rem;
+}
+
+.mobNav__icon, 
+.mobNav__icon::before, 
+.mobNav__icon::after {
+    width: 2rem;
+    height: 2px;
+    background-color: #333;
+    display: inline-block;
+}
+
+.mobNav__icon::before, 
+.mobNav__icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+
+    transition: all 0.2s;
+}
+
+.mobNav__icon::before { top: -0.4rem; }
+
+.mobNav__icon::after { top: 0.4rem; }
+
+.mobNav__button:hover .mobNav__icon::before { top: -0.5rem }
+
+.mobNav__button:hover .mobNav__icon::after { top: 0.5rem }
+
+.mobNav__checkbox:checked + .mobNav__button .mobNav__icon {
+    background-color: transparent;
+}
+
+.mobNav__checkbox:checked + .mobNav__button .mobNav__icon::before {
+    top: 0;
+    transform: rotate(135deg);
+}
+
+.mobNav__checkbox:checked + .mobNav__button .mobNav__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+}
+
+@media (min-width: 48em) {
+    .mob--nav {
+        display: none;
+    }
+}

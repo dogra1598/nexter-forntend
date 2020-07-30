@@ -1,0 +1,141 @@
+.product__container {
+  position: relative;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 1rem;
+  width: 15rem;
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), #ffcb74);
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.7);
+  cursor: default;
+  backface-visibility: hidden;
+}
+
+.product__image {
+  width: 15rem;
+}
+
+.product__image > img {
+  width: 100%;
+}
+
+.product__price {
+  padding: 0.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.product__price h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.btn--addtocart {
+  margin: 0.5rem 0 1.5rem 0;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border: none;
+  background-color: rgba(31, 40, 51, 0.8);
+  border-radius: 0.5rem;
+  color: #fff;
+
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  z-index: -1;
+
+  transition: all 0.3s;
+}
+
+.btn--details {
+  margin: 0.5rem 0 1.5rem 0;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border: none;
+  background-color: rgba(31, 40, 51, 0.8);
+  border-radius: 0.5rem;
+  color: #fff;
+
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  z-index: -1;
+
+  transition: all 0.3s;
+}
+
+.product__container:hover .product {
+  filter: blur(3px) brightness(70%);
+}
+
+.product__container:hover .btn--addtocart {
+  top: 22%;
+  z-index: 1;
+  opacity: 1;
+  filter: none;
+}
+
+.product__container:hover .btn--details {
+  top: 50%;
+  z-index: 1;
+  opacity: 1;
+  filter: none;
+}
+
+@media (min-width: 64em) {
+  .product {
+    width: 22rem;
+  }
+
+  .product__image {
+    width: 22rem;
+  }
+
+  .product__price h1 {
+    font-size: 2.6rem;
+  }
+
+  .btn--addtocart {
+    margin: 0.5rem 0 1.5rem 0;
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+
+    transition: all 0.4s;
+  }
+
+  .btn--details {
+    margin: 0.5rem 0 1.5rem 0;
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+
+    transition: all 0.4s;
+  }
+
+  .btn--addtocart:hover {
+    transform: translate(-50%, -0.3rem);
+  }
+
+  .btn--addtocart:active {
+    transform: translate(-50%, 0);
+  }
+
+  .btn--details:hover {
+    transform: translate(-50%, -0.3rem);
+  }
+
+  .btn--details:active {
+    transform: translate(-50%, 0);
+  }
+}
