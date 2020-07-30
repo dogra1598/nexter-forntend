@@ -5,14 +5,13 @@ import sprite from "../../../Assets/Images/sprite.svg";
 import "./NavLinks.css";
 
 const NavLinks = (props) => {
-  
   return (
     <ul className="nav--links">
       <div className="toggler">
         <span>&nbsp;</span>
       </div>
       <li>
-        <NavLink to="/" exact>
+        <NavLink to="/" exact onClick={props.onClick}>
           <svg className="svg">
             <use href={sprite + "#icon-shop"} />
           </svg>&nbsp;&nbsp;
@@ -20,7 +19,7 @@ const NavLinks = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/u1/cart" exact>
+        <NavLink to="/cart" exact onClick={props.onClick}>
           <svg className="svg">
             <use href={sprite + "#icon-cart-plus"} />
           </svg>&nbsp;&nbsp;
@@ -28,7 +27,7 @@ const NavLinks = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/u1/orders" exact>
+        <NavLink to="/orders" exact onClick={props.onClick}>
           <svg className="svg">
             <use href={sprite + "#icon-border_color"} />
           </svg>&nbsp;&nbsp;
@@ -37,7 +36,7 @@ const NavLinks = (props) => {
       </li>
 
       <li>
-        <NavLink to="/signup" exact>
+        <NavLink to="/signup" exact onClick={props.onClick}>
           <svg className="svg">
             <use href={sprite + "#icon-user-plus"} />
           </svg>&nbsp;&nbsp;
@@ -45,7 +44,7 @@ const NavLinks = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/login" exact>
+        <NavLink to="/login" exact onClick={props.onClick}>
           <svg className="svg">
             <use href={sprite + "#icon-sign-in"} />
           </svg>&nbsp;&nbsp;

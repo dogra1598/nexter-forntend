@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  backface-visibility: hidden;
 
   background-image: linear-gradient(
     120deg,
@@ -63,4 +64,10 @@
     list-style: none;
     padding: 0.5rem 2rem;
   }
+
+  .nav--links a:link,
+.nav--links a:visited,
+.nav--links a:active {
+  padding: 1rem 3rem 1rem 2rem;
+}
 }

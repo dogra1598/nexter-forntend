@@ -1,0 +1,16 @@
+.cart {
+    margin-left: 22%;
+    padding: 2rem 5rem;
+    background-origin: padding-box;
+}
+
+.cart--heading {
+    text-align: center;
+}
+
+.cart--heading h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 5rem;
+    color: #112d32;
+}
