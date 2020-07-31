@@ -5,16 +5,16 @@ import "./Products.css";
 
 const DUMMY_PRODUCTS = [
   {
-    id: "p1",
-    title: "Harry Potter and the prisioner of Askaban",
+    _id: "p1",
+    title: "The world atlas of coffee",
     imageUrl:
       "https://images.pexels.com/photos/2187601/pexels-photo-2187601.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     price: 19.99,
     description: "This is an awesome book",
   },
   {
-    id: "p2",
-    title: "Bicycle",
+    _id: "p2",
+    title: "Mountain Ranger Bicycle",
     imageUrl:
       "https://images.pexels.com/photos/544997/pexels-photo-544997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     price: 399.99,
@@ -23,10 +23,11 @@ const DUMMY_PRODUCTS = [
 ];
 
 const Products = () => {
-  const allProducts = DUMMY_PRODUCTS.map((product) => {
+  const allProducts = DUMMY_PRODUCTS.map(product => {
     return (
       <Product
-        key={product.id}
+        key={product._id}
+        productId={product._id}
         title={product.title}
         imageUrl={product.imageUrl}
         price={product.price}

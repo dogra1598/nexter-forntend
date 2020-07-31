@@ -17,7 +17,7 @@ const Product = (props) => {
       <form>
         <Button className="btn--addtocart">Add to Cart</Button>
       </form>
-      <Button className="btn--details">Details</Button>
+      <Button to={`/products/${props.productId}`} excat="excat" className="btn--details">Details</Button>
     </div>
   );
 };

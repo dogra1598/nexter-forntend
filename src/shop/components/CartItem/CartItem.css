@@ -1,21 +1,136 @@
 .cartItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 
-    margin: 2rem 0;
-    padding: 2rem;
-    background-color: #f3f3f3;
-    border-radius: 1rem;
-    color: #112d32;
-    font-size: 1.2rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), #000);
+  border-radius: 0.5rem;
+  color: rgba(255, 204, 116, 0.7);
+  font-size: 0.8rem;
+}
+
+.cartItem__title__price h1 {
+  font-weight: 300;
+  margin: 0 0.5rem;
 }
 
 .cart--product--image {
-    text-align: center;
-    width: 5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  height: 6rem;
+  margin: 1rem 0.5rem 1rem 0.5rem;
 }
 
 .cart--product--image img {
-    width: 100%;
+  height: 100%;
+}
+
+.changeQuantity {
+  border: 1px solid rgba(255, 204, 116, 0.7);
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+.removeProduct,
+.addProduct {
+  width: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: rgba(255, 204, 116, 0.7);
+}
+
+.removeProduct {
+  border-right: 1px solid rgba(255, 204, 116, 0.7);
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  margin-right: 1rem;
+}
+
+.addProduct {
+  border-left: 1px solid rgba(255, 204, 116, 0.7);
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-left: 1rem;
+}
+
+.cartItem--delete {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 1.4rem;
+  background-color: #d9534f;
+  color: #000;
+  border-color: #d9534f;
+  font-weight: 700;
+}
+
+@media (min-width: 48em) {
+  .cartItem {
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .changeQuantity {
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .removeProduct,
+  .addProduct {
+    width: 3rem;
+  }
+
+  .removeProduct:hover {
+    background-color: rgb(255, 204, 116);
+  }
+
+  .addProduct:hover {
+    background-color: rgb(255, 204, 116);
+  }
+
+  .cartItem--delete {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .cartItem {
+    border-radius: 1rem;
+    font-size: 1rem;
+  }
+
+  .cart--product--image {
+    border-radius: 1rem;
+    height: 8rem;
+  }
+
+  .changeQuantity {
+    font-size: 1.6rem;
+  }
+
+  .removeProduct,
+  .addProduct {
+    font-size: 1.6rem;
+  }
+
+  .cartItem--delete {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    background-color: transparent;
+    color: #d9534f;
+    border-color: #d9534f;
+  }
+
+  .cartItem--delete:hover {
+    background-color: #d9534f;
+    color: #000;
+  }
 }

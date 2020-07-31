@@ -1,0 +1,31 @@
+.orders {
+  padding: 2rem;
+}
+
+.orders__heading {
+  text-align: center;
+  text-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.7);
+}
+
+.orders__heading h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #112d32;
+}
+
+@media (min-width: 48em) {
+  .orders {
+    margin-left: 28%;
+  }
+
+  .orders__heading h1 {
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .orders {
+    margin-left: 22%;
+  }
+}

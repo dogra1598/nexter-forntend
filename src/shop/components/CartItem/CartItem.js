@@ -8,18 +8,25 @@ const CartItem = (props) => {
 
   return (
     <div className="cartItem">
-      <h1>{props.title}</h1>
-      <div className="cart--product--image">
-        <img src={props.image} alt={props.title} />
+      <div className="cartItem__section1">
+        <div className="cartItem__title__price">
+          <h1>{props.title}</h1>
+          <h1>amount: ₹ {itemPrice}</h1>
+        </div>
       </div>
-      <div>
-        <Button>-</Button>
-        {props.quantity}
-        <Button>+</Button>
+      <div className="cartItem__section2">
+        <div className="cart--product--image">
+          <img src={props.image} alt={props.title} />
+        </div>
       </div>
-      <h1>
-        amount: {itemPrice}
-      </h1>
+      <div className="cartItem__section3">
+        <div className="changeQuantity">
+          <Button className="removeProduct">-</Button>
+          {props.quantity}
+          <Button className="addProduct">+</Button>
+        </div>
+        <Button className="cartItem--delete">Delete</Button>
+      </div>
     </div>
   );
 };

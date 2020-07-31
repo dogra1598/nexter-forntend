@@ -25,7 +25,6 @@
   display: flex;
   align-items: center;
   width: 100%;
-  backface-visibility: hidden;
 
   background-image: linear-gradient(
     120deg,
@@ -42,7 +41,6 @@
 
 .nav--links a:not(.active):hover {
   background-position: 100%;
-  transform: translateX(1rem);
 }
 
 .nav--links a.active {
@@ -66,8 +64,8 @@
   }
 
   .nav--links a:link,
-.nav--links a:visited,
-.nav--links a:active {
-  padding: 1rem 3rem 1rem 2rem;
-}
+  .nav--links a:visited,
+  .nav--links a:active {
+    padding: 1rem 3rem 1rem 2rem;
+  }
 }
