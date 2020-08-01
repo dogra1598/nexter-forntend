@@ -24,7 +24,7 @@ const DUMMY_CARTITEMS = [
 ];
 
 const Cart = () => {
-  const cartItems = DUMMY_CARTITEMS.map(cartItem => {
+  const cartItems = DUMMY_CARTITEMS.map((cartItem) => {
     return (
       <CartItem
         key={cartItem.productId}
@@ -36,7 +36,16 @@ const Cart = () => {
     );
   });
 
-  let totalCartPrice = 0.00;
+  if (cartItems.length === 0) {
+    return (
+      <div className="cart__empty">
+        <h1>Your Cart is Empty!</h1>
+        <Button className="cart__explore--btn">Explore Products</Button>
+      </div>
+    );
+  }
+
+  let totalCartPrice = 0.0;
   for (let i = 0; i < cartItems.length; i++) {
     totalCartPrice += cartItems[i].props.quantity * cartItems[i].props.price;
   }
@@ -49,7 +58,9 @@ const Cart = () => {
       {cartItems}
       <div className="cart__totalPrice">
         <h1>Cart Total: ₹ {totalCartPrice.toFixed(2)}</h1>
-        <Button to="/order" className="cart__orderNow">Order Now</Button>
+        <Button to="/order" className="cart__orderNow">
+          Order Now
+        </Button>
       </div>
     </main>
   );

@@ -1,0 +1,43 @@
+.form-control {
+  width: 100%;
+  padding: 0 5rem;
+}
+
+.form-control input {
+  width: 100%;
+  display: block;
+  height: 3rem;
+  padding: 0 1rem;
+  font-size: 1.6rem;
+}
+
+.form-control label {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.form-control textarea {
+  display: block;
+}
+
+.form-control__invalid p {
+  font-size: 1.4rem;
+}
+
+.form-control__invalid label,
+.form-control__invalid p {
+  color: #d9534f !important;
+}
+
+.form-control__invalid input,
+.form-control__invalid textarea {
+  border-color: #d9534f !important;
+}
+
+@media (min-width: 48em) {
+  .form-control__invalid p {
+    font-size: 1.6rem;
+  }
+}

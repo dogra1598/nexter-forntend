@@ -35,6 +35,15 @@ const Products = () => {
       />
     );
   });
+
+  if (allProducts.length === 0) {
+    return (
+      <div className="products__empty">
+        <h1>Sorry No Products Found!<br/>We will add soon</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="products">{allProducts}</div>
   );
