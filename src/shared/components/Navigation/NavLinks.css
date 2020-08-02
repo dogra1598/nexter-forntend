@@ -54,6 +54,38 @@
   fill: #f3f3f3;
 }
 
+.nav--links .logout__btn {
+  width: 100% !important;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f3f3f3;
+  padding: 1rem 3rem 1rem 2rem;
+  display: flex;
+  align-items: center;
+  width: 20rem;
+
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    rgba(255, 204, 116, 0.5) 50%
+  );
+  background-size: 220%;
+  border-radius: 0.5rem;
+  border: 1px solid #ffcb74;
+
+  transition: all 0.2s;
+}
+
+.logout__btn:hover {
+  background-position: 100%;
+}
+
+.logout__btn:focus {
+  outline: none;
+}
+
 @media (min-width: 48em) {
   .nav--links {
     position: relative;

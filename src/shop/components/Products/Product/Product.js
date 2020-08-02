@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Button from "../../../../shared/components/FormElements/Button/Button";
+import { AuthContext } from "../../../../shared/context/authContext";
 import "./Product.css";
 
 const Product = (props) => {
+  const auth = useContext(AuthContext);
+
   return (
     <div className="product__container">
       <div className="product">
@@ -14,10 +17,18 @@ const Product = (props) => {
           <h1>₹ {props.price}</h1>
         </div>
       </div>
-      <form>
-        <Button className="btn--addtocart">Add to Cart</Button>
-      </form>
-      <Button to={`/products/${props.productId}`} excat="excat" className="btn--details">Details</Button>
+      {auth.isLoggedIn && (
+        <form>
+          <Button className="btn--addtocart">Add to Cart</Button>
+        </form>
+      )}
+      <Button
+        to={`/products/${props.productId}`}
+        excat="excat"
+        className="btn--details"
+      >
+        Details
+      </Button>
     </div>
   );
 };

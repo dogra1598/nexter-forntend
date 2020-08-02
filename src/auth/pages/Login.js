@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -7,10 +7,13 @@ import {
   VALIDATOR_MINLENGTH,
 } from "../../shared/util/validators";
 import Button from "../../shared/components/FormElements/Button/Button";
-import { useForm } from "../../shared/hooks/form-hook";
+import { useForm } from "../../shared/hooks/formHook";
+import { AuthContext } from "../../shared/context/authContext";
 import "./Auth.css";
 
 const Login = () => {
+  const auth = useContext(AuthContext);
+
   const [formState, inputHandler] = useForm(
     {
       email: {
@@ -28,6 +31,8 @@ const Login = () => {
   const signupSubmitHandler = (event) => {
     event.preventDefault();
     console.log(formState.inputs); // backend
+
+    auth.login();
   };
 
   return (
@@ -66,7 +71,7 @@ const Login = () => {
           >
             Login
           </Button>
-          <Button className="auth__btn" to="/login">
+          <Button className="auth__btn" to="/signup">
             Signup Now
           </Button>
         </div>

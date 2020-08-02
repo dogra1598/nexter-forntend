@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, Redirect } from "react-router-dom";
 
 import Button from "../../shared/components/FormElements/Button/Button";
+import { AuthContext } from "../../shared/context/authContext";
 import "./SingleProduct.css";
 
 const DUMMY_PRODUCTS = [
@@ -26,15 +27,15 @@ const DUMMY_PRODUCTS = [
 ];
 
 const SingleProduct = (props) => {
+  const auth = useContext(AuthContext);
+
   const productId = useParams().productId;
   const product = DUMMY_PRODUCTS.filter((product) => {
     return product._id === productId;
   });
 
-  if(product.length === 0) {
-    return (
-      <Redirect to="/" />
-    );
+  if (product.length === 0) {
+    return <Redirect to="/" />;
   }
 
   return (
@@ -51,9 +52,13 @@ const SingleProduct = (props) => {
       <div className="single-product__description">
         <p>{product[0].description}</p>
       </div>
-      <form>
-        <Button className="single-product__btn--addtocart">Add to Cart</Button>
-      </form>
+      {auth.isLoggedIn && (
+        <form>
+          <Button className="single-product__btn--addtocart">
+            Add to Cart
+          </Button>
+        </form>
+      )}
     </div>
   );
 };

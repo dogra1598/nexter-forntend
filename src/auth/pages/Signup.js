@@ -7,7 +7,7 @@ import {
   VALIDATOR_MINLENGTH,
 } from "../../shared/util/validators";
 import Button from "../../shared/components/FormElements/Button/Button";
-import { useForm } from "../../shared/hooks/form-hook";
+import { useForm } from "../../shared/hooks/formHook";
 import "./Auth.css";
 
 const Signup = () => {

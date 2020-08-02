@@ -89,6 +89,10 @@
     margin-left: 22%;
   }
 
+  .auth__input {
+    padding: 0 30rem;
+  }
+
   .auth__btn {
     background-color: #fff;
     color: #112d32;
