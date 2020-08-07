@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import axois from "axios";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -29,10 +31,22 @@ const Signup = () => {
     false
   );
 
+  const [isSignedUp, setIsSignedUp] = useState(false);
+
   const signupSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(formState.inputs); // backend
+    axois
+      .post("http://localhost:5000/signup", formState.inputs)
+      .then((response) => {
+        if(response.data.user) {
+          setIsSignedUp(true);
+        }
+      });
   };
+
+  if(isSignedUp) {
+    return <Redirect to="/login" />
+  }
 
   return (
     <div className="auth">
