@@ -38,14 +38,15 @@ const Signup = () => {
     axois
       .post("http://localhost:5000/signup", formState.inputs)
       .then((response) => {
-        if(response.data.user) {
+        if (response.data.user) {
           setIsSignedUp(true);
         }
-      });
+      })
+      .catch((err) => console.log(err.response.data.message));
   };
 
-  if(isSignedUp) {
-    return <Redirect to="/login" />
+  if (isSignedUp) {
+    return <Redirect to="/login" />;
   }
 
   return (
