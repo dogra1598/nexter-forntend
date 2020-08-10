@@ -68,7 +68,10 @@ const NavLinks = (props) => {
             className="logout__btn"
             onClick={auth.logout}
           >
-            logout
+            <svg className="svg">
+              <use href={sprite + "#icon-sign-out"} />
+            </svg>
+            &nbsp;&nbsp; Logout
           </Button>
         </li>
       )}

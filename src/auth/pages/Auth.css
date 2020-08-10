@@ -55,10 +55,10 @@
 
 .auth__btn {
   text-align: center;
-  width: 15rem;
-  margin: 5rem 1rem 2rem 1rem ;
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
+  width: 11rem;
+  margin: 5rem 1rem 0rem 1rem;
+  padding: 1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   background-color: #112d32;
   color: #fff;
@@ -81,6 +81,13 @@
 
   .auth__input label {
     font-size: 1.8rem;
+  }
+
+  .auth__btn {
+    width: 14rem;
+    font-size: 1.6rem;
+    margin: 5rem 1rem 2rem 1rem;
+    padding: 1rem 2rem;
   }
 }
 
