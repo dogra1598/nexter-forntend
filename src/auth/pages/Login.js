@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -11,13 +10,12 @@ import Button from "../../shared/components/FormElements/Button/Button";
 import { useForm } from "../../shared/hooks/formHook";
 import { AuthContext } from "../../shared/context/authContext";
 import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
-import withErrorHandler from "../../hoc/withErrorHandler";
+import Modal from "../../shared/components/UIElements/Modal/Modal";
+import { useHttpClient } from "../../shared/hooks/httpHook";
 import "./Auth.css";
 
 const Login = () => {
   const auth = useContext(AuthContext);
-
-  const [showSpinner, setShowSpinner] = useState(false);
 
   const [formState, inputHandler] = useForm(
     {
@@ -33,25 +31,33 @@ const Login = () => {
     false
   );
 
+  const { showSpinner, error, sendRequest, clearError } = useHttpClient();
+
   const signupSubmitHandler = (event) => {
     event.preventDefault();
-    setShowSpinner(true);
-    axios
-      .post("http://localhost:5000/login", {
+
+    sendRequest(
+      "http://localhost:5000/login",
+      "POST",
+      JSON.stringify({
         email: formState.inputs.email.value,
         password: formState.inputs.password.value,
-      })
-      .then((response) => {
-        setShowSpinner(false);
-        if (response) {
-          auth.login();
-        }
-      });
+      }),
+      {
+        "Content-Type": "application/json",
+      }
+    )
+    .then(() => {
+      auth.login();
+    })
   };
 
   return (
     <React.Fragment>
       {showSpinner && <Spinner show={showSpinner} />}
+      <Modal show={error} clicked={clearError}>
+        {error}
+      </Modal>
       <div className="auth">
         <div className="auth__heading">
           <h1>Login</h1>
@@ -97,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default withErrorHandler(Login, axios);
+export default Login;

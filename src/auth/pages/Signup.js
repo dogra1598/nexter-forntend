@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
+import React from "react";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -10,8 +8,9 @@ import {
 } from "../../shared/util/validators";
 import Button from "../../shared/components/FormElements/Button/Button";
 import { useForm } from "../../shared/hooks/formHook";
-import withErrorHandler from "../../hoc/withErrorHandler";
 import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
+import Modal from "../../shared/components/UIElements/Modal/Modal";
+import { useHttpClient } from "../../shared/hooks/httpHook";
 import "./Auth.css";
 
 const Signup = () => {
@@ -37,34 +36,32 @@ const Signup = () => {
     false
   );
 
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false);
+  const { showSpinner, error, sendRequest, clearError } = useHttpClient();
 
   const signupSubmitHandler = (event) => {
     event.preventDefault();
-    setShowSpinner(true);
-    axios
-      .post("http://localhost:5000/signup", {
+
+    sendRequest(
+      "http://localhost:5000/signup",
+      "POST",
+      JSON.stringify({
         username: formState.inputs.username.value,
         email: formState.inputs.email.value,
         password: formState.inputs.password.value,
         confirmPassword: formState.inputs.confirmPassword.value,
-      })
-      .then((response) => {
-        setShowSpinner(false);
-        if (response) {
-          setIsSignedUp(true);
-        }
-      });
+      }),
+      {
+        "Content-Type": "application/json",
+      }
+    );
   };
-
-  if (isSignedUp) {
-    return <Redirect to="/login" />;
-  }
 
   return (
     <React.Fragment>
       {showSpinner && <Spinner show={showSpinner} />}
+      <Modal show={error} clicked={clearError}>
+        {error}
+      </Modal>
       <div className="auth">
         <div className="auth__heading">
           <h1>Signup</h1>
@@ -132,4 +129,4 @@ const Signup = () => {
   );
 };
 
-export default withErrorHandler(Signup, axios);
+export default Signup;

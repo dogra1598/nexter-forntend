@@ -9,7 +9,7 @@ import {
 import Navigation from "./shared/components/Navigation/Navbar";
 import Home from "./shop/pages/Home";
 import Cart from "./shop/pages/Cart";
-import SingleProduct from "./shop/pages/SingleProduct";
+import SingleProduct from "./shop/pages/ProductDetails/SingleProduct";
 import Orders from "./shop/pages/Orders";
 import Signup from "./auth/pages/Signup";
 import Login from "./auth/pages/Login";
@@ -62,7 +62,7 @@ const App = () => {
         <Route path="/login" exact>
           <Login />
         </Route>
-        <Redirect to="/signup" />
+        <Redirect to="/login" />
       </Switch>
     );
   }
