@@ -47,9 +47,12 @@ const Login = () => {
         "Content-Type": "application/json",
       }
     )
-    .then(() => {
-      auth.login();
-    })
+      .then((responseData) => {
+        if (!error) {
+          auth.login(responseData.user._id);
+        }
+      })
+      .catch(() => {});
   };
 
   return (

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -38,6 +39,8 @@ const Signup = () => {
 
   const { showSpinner, error, sendRequest, clearError } = useHttpClient();
 
+  const [isRedirect, setIsRedirect] = useState(false);
+
   const signupSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -53,8 +56,18 @@ const Signup = () => {
       {
         "Content-Type": "application/json",
       }
-    );
+    )
+      .then(() => {
+        if (!error) {
+          setIsRedirect(true);
+        }
+      })
+      .catch(() => {});
   };
+
+  if (isRedirect) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <React.Fragment>

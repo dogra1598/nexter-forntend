@@ -6,7 +6,7 @@
 
   position: relative;
   padding: 2rem;
-  margin-top: 6rem;
+  margin-top: 1.5rem;
   color: #225544;
 }
 
@@ -53,8 +53,9 @@
 @media (min-width: 48em) {
   .single-product {
     margin-top: 2rem;
-    margin-left: 28%;
     padding: 2rem 5rem;
+    float: right;
+    width: 72%;
   }
 
   .single-product__image {
@@ -68,7 +69,7 @@
 
 @media (min-width: 64em) {
   .single-product {
-    margin-left: 22%;
+    width: 78%;
   }
 
   .single-product__image {

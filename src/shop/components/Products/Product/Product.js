@@ -1,11 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import Button from "../../../../shared/components/FormElements/Button/Button";
 import { AuthContext } from "../../../../shared/context/authContext";
+import {useHttpClient} from "../../../../shared/hooks/httpHook";
 import "./Product.css";
 
 const Product = (props) => {
   const auth = useContext(AuthContext);
+
+  const { showSpinner, error, sendRequest, clearError } = useHttpClient();
+  const [isRedirect, setIsRedirect] = useState(false);
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    sendRequest(
+      "http://localhost:5000/cart",
+      "POST",
+      JSON.stringify({
+        productId: props.productId,
+        userId: auth.userId
+      }),
+      {
+        "Content-Type": "application/json",
+      }
+    )
+      .then(() => {
+        if (!error) {
+          setIsRedirect(true);
+        }
+      })
+      .catch(() => {});
+  };
+
+  if(isRedirect) {
+    return <Redirect to="/cart" />
+  }
 
   return (
     <div className="product__container">
@@ -18,8 +49,10 @@ const Product = (props) => {
         </div>
       </div>
       {auth.isLoggedIn && (
-        <form>
-          <Button className="btn--addtocart">Add to Cart</Button>
+        <form onSubmit={onSubmitHandler}>
+          <Button className="btn--addtocart" type="submit">
+            Add to Cart
+          </Button>
         </form>
       )}
       <Button

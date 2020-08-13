@@ -1,38 +1,43 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Redirect } from "react-router-dom";
-import axios from "axios";
 
 import Button from "../../../shared/components/FormElements/Button/Button";
 import { AuthContext } from "../../../shared/context/authContext";
 import Spinner from "../../../shared/components/UIElements/Spinner/Spinner";
 import ProductDetails from "./ProductDetails";
+import { useHttpClient } from "../../../shared/hooks/httpHook";
 import "./SingleProduct.css";
 
 const SingleProduct = (props) => {
   const auth = useContext(AuthContext);
 
-  const [showSpinner, setShowSpinner] = useState(false);
   const [product, setProduct] = useState(null);
+  const { showSpinner, error, sendRequest } = useHttpClient();
+
   const [isRedirect, setIsRedirect] = useState(false);
 
   const productId = useParams().productId;
 
   useEffect(() => {
-    setShowSpinner(true);
-    axios
-      .get(`http://localhost:5000/products/${productId}`)
-      .then((response) => {
-        setShowSpinner(false);
-        setProduct(response.data.product);
-      })
-      .catch((err) => {
-        setShowSpinner(false);
+    const fetchData = async () => {
+      const response = await sendRequest(
+        `http://localhost:5000/products/${productId}`,
+        "GET",
+        null,
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      setProduct(response.product);
+      if(error) {
         setIsRedirect(true);
-      });
-  }, [productId, setProduct, setShowSpinner]);
+      }
+    };
+    fetchData();
+  }, [productId, setProduct, error, sendRequest]);
 
-  if(isRedirect) {
-    return <Redirect to="/" />
+  if (isRedirect) {
+    return <Redirect to="/" />;
   }
 
   return (

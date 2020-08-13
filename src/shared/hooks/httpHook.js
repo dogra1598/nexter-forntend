@@ -4,35 +4,39 @@ export const useHttpClient = () => {
   const [showSpinner, setShowSpinner] = useState(false);
   const [error, setError] = useState(null);
 
-  const activeHttpRequest = useRef([]);
+  const activeHttpRequests = useRef([]);
 
   const sendRequest = useCallback(
-    (url, method = "GET", body = null, headers = {}) => {
+    async (url, method = "GET", body = null, headers = {}) => {
       setShowSpinner(true);
       const httpAbortCtrl = new AbortController();
-      activeHttpRequest.current.push(httpAbortCtrl);
-      fetch(url, {
-        method,
-        body,
-        headers,
-        signal: httpAbortCtrl.signal,
-      })
-        .then((response) => response.json())
-        .then((responseData) => {
-          activeHttpRequest.current = activeHttpRequest.current.filter(
-            (reqCtrl) => reqCtrl !== httpAbortCtrl
-          );
-          if (responseData.error) {
-            setError(responseData.message);
-          }
-          setShowSpinner(false);
-        })
-        .catch(() => {
-          setError("Network Error!");
-          setShowSpinner(false);
+      activeHttpRequests.current.push(httpAbortCtrl);
+      try {
+        const response = await fetch(url, {
+          method,
+          body,
+          headers,
+          signal: httpAbortCtrl.signal,
         });
+
+        const responseData = await response.json();
+
+        activeHttpRequests.current = activeHttpRequests.current.filter(
+          reqCtrl => reqCtrl !== httpAbortCtrl
+        );
+
+        if(!response.ok) {
+          setError(responseData.message);
+        }
+        setShowSpinner(false);
+        return responseData;
+      } catch(err) {
+        setError("Network Error.");
+        setShowSpinner(false);
+        throw err;
+      }
     },
-    []
+    [setShowSpinner, setError]
   );
 
   const clearError = () => {
@@ -41,7 +45,7 @@ export const useHttpClient = () => {
 
   useEffect(() => {
     return () => {
-      activeHttpRequest.current.forEach((abortCtrl) => abortCtrl.abort());
+      activeHttpRequests.current.forEach((abortCtrl) => abortCtrl.abort());
     };
   }, []);
 
