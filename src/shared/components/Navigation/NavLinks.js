@@ -24,7 +24,7 @@ const NavLinks = (props) => {
       </li>
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/cart" exact onClick={props.onClick}>
+          <NavLink to={`/cart/${auth.userId}`} exact onClick={props.onClick}>
             <svg className="svg">
               <use href={sprite + "#icon-cart-plus"} />
             </svg>
@@ -34,7 +34,7 @@ const NavLinks = (props) => {
       )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/orders" exact onClick={props.onClick}>
+          <NavLink to={`/orders/${auth.userId}`} exact onClick={props.onClick}>
             <svg className="svg">
               <use href={sprite + "#icon-border_color"} />
             </svg>

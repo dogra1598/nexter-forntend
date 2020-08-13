@@ -1,68 +1,89 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import CartItem from "../components/CartItem/CartItem";
-import "./Cart.css";
 import Button from "../../shared/components/FormElements/Button/Button";
-
-const DUMMY_CARTITEMS = [
-  {
-    productId: "p1",
-    title: "The world atlas of coffee",
-    image:
-      "https://images.pexels.com/photos/2187601/pexels-photo-2187601.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    quantity: 1,
-    price: 19.99,
-  },
-  {
-    productId: "p2",
-    title: "Mountain Ranger Bicycle",
-    image:
-      "https://images.pexels.com/photos/544997/pexels-photo-544997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    quantity: 1,
-    price: 399.99,
-  },
-];
+import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
+import Modal from "../../shared/components/UIElements/Modal/Modal";
+import { useHttpClient } from "../../shared/hooks/httpHook";
+import { AuthContext } from "../../shared/context/authContext";
+import "./Cart.css";
 
 const Cart = () => {
-  const cartItems = DUMMY_CARTITEMS.map((cartItem) => {
-    return (
-      <CartItem
-        key={cartItem.productId}
-        title={cartItem.title}
-        image={cartItem.image}
-        price={cartItem.price}
-        quantity={cartItem.quantity}
-      />
-    );
-  });
+  const { showSpinner, error, sendRequest, clearError } = useHttpClient();
+  const [isUpdateCart, setIsUpdateCart] = useState(false);
+  const [products, setProducts] = useState(null);
+  const [totalPrice, settotalPrice] = useState(0.0);
 
-  if (cartItems.length === 0) {
-    return (
-      <div className="cart__empty">
-        <h1>Your Cart is Empty!</h1>
-        <Button className="cart__explore--btn">Explore Products</Button>
-      </div>
-    );
+  const auth = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await sendRequest(
+        `http://localhost:5000/cart/${auth.userId}`,
+        "GET",
+        null,
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      setProducts(response.products);
+      settotalPrice(response.totalPrice);
+      if(isUpdateCart) {
+        setIsUpdateCart(false);
+      }
+    };
+    fetchData();
+  }, [setProducts, sendRequest, auth.userId, isUpdateCart]);
+
+  const updateCartHandler = () => {
+    setIsUpdateCart(true);
   }
 
-  let totalCartPrice = 0.0;
-  for (let i = 0; i < cartItems.length; i++) {
-    totalCartPrice += cartItems[i].props.quantity * cartItems[i].props.price;
+  let cartItems = null;
+  if (products) {
+    cartItems = products.map((cartItem) => {
+      return (
+        <CartItem
+          key={cartItem.productId._id}
+          productId={cartItem.productId._id}
+          title={cartItem.productId.title}
+          image={cartItem.productId.imageUrl}
+          price={cartItem.productId.price}
+          quantity={cartItem.quantity}
+          updateCart={updateCartHandler}
+        />
+      );
+    });
+
+    if (cartItems.length === 0) {
+      return (
+        <div className="cart__empty">
+          <h1>Your Cart is Empty!</h1>
+          <Button className="cart__explore--btn" to="/">Explore Products</Button>
+        </div>
+      );
+    }
   }
 
   return (
-    <main className="cart">
-      <div className="cart--heading">
-        <h1>Your Cart</h1>
-      </div>
-      {cartItems}
-      <div className="cart__totalPrice">
-        <h1>Cart Total: ₹ {totalCartPrice.toFixed(2)}</h1>
-        <Button to="/order" className="cart__orderNow">
-          Order Now
-        </Button>
-      </div>
-    </main>
+    <React.Fragment>
+      {showSpinner && <Spinner show={showSpinner} />}
+      <Modal show={error} clicked={clearError}>
+        {error}
+      </Modal>
+      {cartItems && <main className="cart">
+        <div className="cart--heading">
+          <h1>Your Cart</h1>
+        </div>
+        {cartItems}
+        <div className="cart__totalPrice">
+          <h1>Cart Total: ₹ {totalPrice.toFixed(2)}</h1>
+          <Button to="/order" className="cart__orderNow">
+            Order Now
+          </Button>
+        </div>
+      </main>}
+    </React.Fragment>
   );
 };
 
