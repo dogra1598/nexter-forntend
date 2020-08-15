@@ -49,9 +49,7 @@
   color: #112d32;
 }
 
-.cart__orderNow:link,
-.cart__orderNow:visited,
-.cart__orderNow:active {
+.cart__orderNow {
   text-decoration: none;
   padding: 1rem 1rem;
   font-size: 1.6rem;
@@ -102,9 +100,7 @@
     color: #fff;
   }
 
-  .cart__orderNow:link,
-  .cart__orderNow:visited,
-  .cart__orderNow:active {
+  .cart__orderNow {
     border: 1px solid #112d32;
     color: #112d32;
     background-color: #fff;

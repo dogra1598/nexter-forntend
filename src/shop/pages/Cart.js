@@ -4,6 +4,7 @@ import CartItem from "../components/CartItem/CartItem";
 import Button from "../../shared/components/FormElements/Button/Button";
 import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
 import Modal from "../../shared/components/UIElements/Modal/Modal";
+import CheckoutModal from "../../shared/components/UIElements/Modal/CheckoutModal";
 import { useHttpClient } from "../../shared/hooks/httpHook";
 import { AuthContext } from "../../shared/context/authContext";
 import "./Cart.css";
@@ -12,6 +13,7 @@ const Cart = () => {
   const { showSpinner, error, sendRequest, clearError } = useHttpClient();
   const [isUpdateCart, setIsUpdateCart] = useState(false);
   const [products, setProducts] = useState(null);
+  const [isCheckout, setIsCheckout] = useState(false);
   const [totalPrice, settotalPrice] = useState(0.0);
 
   const auth = useContext(AuthContext);
@@ -28,7 +30,7 @@ const Cart = () => {
       );
       setProducts(response.products);
       settotalPrice(response.totalPrice);
-      if(isUpdateCart) {
+      if (isUpdateCart) {
         setIsUpdateCart(false);
       }
     };
@@ -37,7 +39,15 @@ const Cart = () => {
 
   const updateCartHandler = () => {
     setIsUpdateCart(true);
-  }
+  };
+
+  const checkoutHandler = () => {
+    setIsCheckout(true);
+  };
+
+  const clearCheckoutHandler = () => {
+    setIsCheckout(false);
+  };
 
   let cartItems = null;
   if (products) {
@@ -59,7 +69,9 @@ const Cart = () => {
       return (
         <div className="cart__empty">
           <h1>Your Cart is Empty!</h1>
-          <Button className="cart__explore--btn" to="/">Explore Products</Button>
+          <Button className="cart__explore--btn" to="/">
+            Explore Products
+          </Button>
         </div>
       );
     }
@@ -71,18 +83,21 @@ const Cart = () => {
       <Modal show={error} clicked={clearError}>
         {error}
       </Modal>
-      {cartItems && <main className="cart">
-        <div className="cart--heading">
-          <h1>Your Cart</h1>
-        </div>
-        {cartItems}
-        <div className="cart__totalPrice">
-          <h1>Cart Total: ₹ {totalPrice.toFixed(2)}</h1>
-          <Button to="/order" className="cart__orderNow">
-            Order Now
-          </Button>
-        </div>
-      </main>}
+      <CheckoutModal show={isCheckout} clicked={clearCheckoutHandler} />
+      {cartItems && (
+        <main className="cart">
+          <div className="cart--heading">
+            <h1>Your Cart</h1>
+          </div>
+          {cartItems}
+          <div className="cart__totalPrice">
+            <h1>Cart Total: ₹ {totalPrice.toFixed(2)}</h1>
+            <Button className="cart__orderNow" onClick={checkoutHandler}>
+              Checkout Now
+            </Button>
+          </div>
+        </main>
+      )}
     </React.Fragment>
   );
 };

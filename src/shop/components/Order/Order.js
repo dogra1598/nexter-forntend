@@ -6,8 +6,8 @@ import Button from "../../../shared/components/FormElements/Button/Button";
 const Order = (props) => {
   const products = props.products.map((product) => {
     return (
-      <div className="order__body" key={product._id}>
-        <div className="order__product--title">{product.title}</div>
+      <div className="order__body" key={product.product._id}>
+        <div className="order__product--title">{product.product.title}</div>
         <div className="order__product--quantity">
           Quantity: {product.quantity}
         </div>
@@ -17,11 +17,10 @@ const Order = (props) => {
   return (
     <div className="order">
       <div className="order__section1">
-        <div className="order__id">{props.orderId}</div>
+        <div className="order__id">#{props.orderId}</div>
+        <hr></hr>
+        <br></br>
         {products}
-        <div className="order__totalPrice">
-          Order Total: ₹ {props.totalPrice}
-        </div>
       </div>
       <div className="order__section2">
           <Button className="order__btn__invoice">Invoice</Button>

@@ -28,13 +28,10 @@
 
 .order__product--title {
   font-size: 1.6rem;
+  font-weight: 700;
 }
 
 .order__product--quantity {
-  font-size: 1.6rem;
-}
-
-.order__totalPrice {
   font-size: 1.6rem;
 }
 
@@ -64,10 +61,6 @@
   }
 
   .order__product--quantity {
-    font-size: 1.8rem;
-  }
-
-  .order__totalPrice {
     font-size: 1.8rem;
   }
 

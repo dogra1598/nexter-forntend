@@ -1,0 +1,120 @@
+.checkoutmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 700;
+  width: 80%;
+  color: #f7f7f7;
+  background: linear-gradient(to right bottom, #225544, rgba(0, 0, 0));
+  border-radius: 0.5rem;
+}
+
+.checkoutmodal__header {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  text-align: center;
+}
+
+.checkoutmodal__header h1 {
+  font-size: 2.5rem;
+}
+
+.checkoutmodal__body {
+  position: relative;
+  padding: 0 2rem 1rem 2rem;
+  font-size: 1.8rem;
+}
+
+.checkoutmodal__footer {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  text-align: center;
+}
+
+.checkoutmodal__footer__btn {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 0.5rem 2rem;
+  color: #f7f7f7;
+  border-color: #f7f7f7;
+}
+
+.checkoutmodal__footer__btn--cancel {
+  text-align: center;
+}
+
+.checkout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout__input label {
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: #f7f7f7;
+}
+
+.checkout__input {
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.checkout__input input {
+  background-color: transparent;
+  font-size: 1.4rem;
+  border: none;
+  padding: 0;
+  border-bottom: 2px solid #f7f7f7;
+  color: #f7f7f7;
+}
+
+.checkout__input input:focus {
+  outline: none;
+  border-color: #b2ff59;
+}
+
+.checkout__expcvv {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 48em) {
+  .checkoutmodal {
+    width: 65%;
+  }
+  .checkout {
+    margin-left: 28%;
+  }
+
+  .checkout__input input {
+    font-size: 1.6rem;
+  }
+
+  .checkout__input label {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .checkout {
+    margin-left: 22%;
+  }
+}

@@ -12,13 +12,54 @@ const CartItem = (props) => {
 
   const auth = useContext(AuthContext);
 
-  const onSubmitHandler = (event) => {
+  const deleteHandler = (event) => {
     event.preventDefault();
 
     sendRequest(
       `http://localhost:5000/deleteFromCart/${auth.userId}/${props.productId}`,
       "DELETE",
       null,
+      {
+        "Content-Type": "application/json",
+      }
+    )
+      .then(() => {
+        if (!error) {
+          props.updateCart();
+        }
+      })
+      .catch(() => {});
+  };
+
+  const decreaseQuantityHandler = (event) => {
+    event.preventDefault();
+
+    sendRequest(
+      `http://localhost:5000/decreaseQuantity/${auth.userId}/${props.productId}`,
+      "DELETE",
+      null,
+      {
+        "Content-Type": "application/json",
+      }
+    )
+      .then(() => {
+        if (!error) {
+          props.updateCart();
+        }
+      })
+      .catch(() => {});
+  };
+
+  const increaseQuantityHandler = (event) => {
+    event.preventDefault();
+
+    sendRequest(
+      "http://localhost:5000/cart",
+      "POST",
+      JSON.stringify({
+        productId: props.productId,
+        userId: auth.userId,
+      }),
       {
         "Content-Type": "application/json",
       }
@@ -53,11 +94,15 @@ const CartItem = (props) => {
         </div>
         <div className="cartItem__section3">
           <div className="changeQuantity">
-            <Button className="removeProduct">-</Button>
+            <form onSubmit={decreaseQuantityHandler}>
+              <Button className="removeProduct">-</Button>
+            </form>
             {props.quantity}
-            <Button className="addProduct">+</Button>
+            <form onSubmit={increaseQuantityHandler}>
+              <Button className="addProduct">+</Button>
+            </form>
           </div>
-          <form onSubmit={onSubmitHandler}>
+          <form onSubmit={deleteHandler}>
             <Button className="cartItem--delete" type="submit">
               Delete
             </Button>

@@ -1,62 +1,59 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 
 import Order from "../components/Order/Order";
+import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
+import Modal from "../../shared/components/UIElements/Modal/Modal";
+import { useHttpClient } from "../../shared/hooks/httpHook";
+import { AuthContext } from "../../shared/context/authContext";
 import "./Orders.css";
 
-const DUMMY_ORDERS = [
-  {
-    _id: "#N23CE34ddze23",
-    products: [
-      {
-        _id: "p1",
-        title: "The world atlas of coffee",
-        quantity: 3
-      },
-      {
-        _id: "p2",
-        title: "Mountain Ranger Bicycle",
-        quantity: 1
-      },
-    ],
-    totalPrice: 459.96
-  },
-  {
-    _id: "#N23CE34ddze24",
-    products: [
-      {
-        _id: "p1",
-        title: "The world atlas of coffee",
-        quantity: 1,
-        price: 19.99,
-      },
-      {
-        _id: "p2",
-        title: "Mountain Ranger Bicycle",
-        quantity: 1,
-        price: 399.99,
-      },
-    ],
-    totalPrice: 419.98
-  },
-];
-
 const Orders = () => {
-  const orders = DUMMY_ORDERS.map(order => {
-    return (
-      <Order
-        key={order._id}
-        orderId={order._id}
-        products={order.products}
-        totalPrice={order.totalPrice}
-      />
-    );
-  });
-  return <div className="orders">
-      <div className="orders__heading">
+  const auth = useContext(AuthContext);
+  const { showSpinner, error, sendRequest, clearError } = useHttpClient();
+  const [orders, setOrders] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await sendRequest(
+        `http://localhost:5000/orders/${auth.userId}`,
+        "GET",
+        null,
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      setOrders(response.orders);
+    };
+    fetchData();
+  }, [auth.userId, sendRequest, setOrders, error]);
+
+  let myorders = null;
+  if (orders) {
+    myorders = orders.map((order) => {
+      return (
+        <Order
+          key={order._id}
+          orderId={order._id}
+          products={order.products}
+        />
+      );
+    });
+  }
+
+  return (
+    <React.Fragment>
+      {showSpinner && <Spinner show={showSpinner} />}
+      <Modal show={error} clicked={clearError}>
+        {error}
+      </Modal>
+      <div className="orders">
+        <div className="orders__heading">
           <h1>Your Orders</h1>
+        </div>
+        {myorders}
       </div>
-      {orders}
-  </div>;
+    </React.Fragment>
+  );
 };
 
 export default Orders;

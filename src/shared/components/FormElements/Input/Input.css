@@ -36,6 +36,16 @@
   border-color: #d9534f !important;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 @media (min-width: 48em) {
   .form-control__invalid p {
     font-size: 1.6rem;
