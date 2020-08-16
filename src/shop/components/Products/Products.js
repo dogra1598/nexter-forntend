@@ -2,6 +2,7 @@ import React from "react";
 
 import Product from "./Product/Product";
 import "./Products.css";
+import Button from "../../../shared/components/FormElements/Button/Button";
 
 const Products = (props) => {
   const allProducts = props.products.map((product) => {
@@ -13,6 +14,8 @@ const Products = (props) => {
         imageUrl={product.imageUrl}
         price={product.price}
         description={product.description}
+        myproducts={props.myproducts}
+        updateMyProducts={props.updateMyProducts}
       />
     );
   });
@@ -21,10 +24,19 @@ const Products = (props) => {
     return (
       <div className="products__empty">
         <h1>
-          Sorry No Products Found!
-          <br />
-          We will add soon.
+          {props.noProducts
+            ? props.noProducts
+            : "Sorry No Products Found!\nWe will add soon."}
         </h1>
+        {props.noProducts && (
+          <Button
+            to="/admin/addProduct"
+            excat="excat"
+            className="products__createproduct"
+          >
+            Add one now
+          </Button>
+        )}
       </div>
     );
   }

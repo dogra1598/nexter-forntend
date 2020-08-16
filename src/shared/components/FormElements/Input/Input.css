@@ -20,6 +20,7 @@
 
 .form-control textarea {
   display: block;
+  white-space: pre-line;
 }
 
 .form-control__invalid p {

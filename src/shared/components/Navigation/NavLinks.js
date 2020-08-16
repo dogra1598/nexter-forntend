@@ -42,6 +42,26 @@ const NavLinks = (props) => {
           </NavLink>
         </li>
       )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to={`/admin/addProduct`} exact onClick={props.onClick}>
+            <svg className="svg">
+              <use href={sprite + "#icon-shopping-basket"} />
+            </svg>
+            &nbsp;&nbsp; Add Product
+          </NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to={`/admin/products/${auth.userId}`} exact onClick={props.onClick}>
+            <svg className="svg">
+              <use href={sprite + "#icon-user-tie"} />
+            </svg>
+            &nbsp;&nbsp; My Products
+          </NavLink>
+        </li>
+      )}
       {!auth.isLoggedIn && (
         <li>
           <NavLink to="/signup" exact onClick={props.onClick}>

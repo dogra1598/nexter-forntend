@@ -38,7 +38,6 @@ const Signup = () => {
   );
 
   const { showSpinner, error, sendRequest, clearError } = useHttpClient();
-
   const [isRedirect, setIsRedirect] = useState(false);
 
   const signupSubmitHandler = (event) => {

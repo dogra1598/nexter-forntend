@@ -1,0 +1,36 @@
+.myproducts {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.myproducts__products__empty {
+  padding: 0 1rem;
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 1.8rem;
+  color: #c5c6c7;
+}
+
+@media (min-width: 48em) {
+  .myproducts {
+    display: block;
+    margin-top: 0;
+  }
+
+  .myproducts__products__empty {
+    margin-left: 28%;
+    font-size: 3rem;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 64em) {
+  .myproducts__products__empty {
+    margin-left: 22%;
+  }
+}

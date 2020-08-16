@@ -37,6 +37,7 @@
   margin-top: 1rem;
   font-size: 1.4rem;
   text-align: center;
+  white-space: pre-line;
 }
 
 .single-product__btn--addtocart {

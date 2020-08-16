@@ -11,6 +11,24 @@
   margin-top: 5rem;
   font-size: 1.8rem;
   color: #c5c6c7;
+  white-space: pre-line;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.products__createproduct {
+  font-size: 2rem;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  border-color: #112d32;
+  background-color: #112d32;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  width: 50%;
 }
 
 @media (min-width: 48em) {
@@ -37,5 +55,17 @@
 
   .products__empty {
     margin-left: 22%;
+  }
+
+  .products__createproduct {
+    background-color: #fff;
+    color: #112d32;
+    
+    transition: all 0.2s;
+  }
+
+  .products__createproduct:hover {
+    background-color: #112d32;
+    color: #fff;
   }
 }

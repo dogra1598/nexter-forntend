@@ -12,7 +12,8 @@ const Product = (props) => {
   const auth = useContext(AuthContext);
 
   const { showSpinner, error, sendRequest, clearError } = useHttpClient();
-  const [isRedirect, setIsRedirect] = useState(false);
+  const [redirectCart, setRedirectCart] = useState(false);
+  const [redirectMyProducts, setRedirectMyProducts] = useState(false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -30,14 +31,82 @@ const Product = (props) => {
     )
       .then(() => {
         if (!error) {
-          setIsRedirect(true);
+          setRedirectCart(true);
         }
       })
       .catch(() => {});
   };
 
-  if (isRedirect) {
+  if (redirectCart) {
     return <Redirect to={`/cart/${auth.userId}`} />;
+  }
+
+  const onDeleteHandler = (event) => {
+    event.preventDefault();
+
+    sendRequest(
+      `http://localhost:5000/admin/deleteProduct/${auth.userId}/${props.productId}`,
+      "DELETE",
+      null,
+      {
+        "Content-Type": "application/json",
+      }
+    )
+      .then(() => {
+        setRedirectMyProducts(true);
+        props.updateMyProducts();
+      })
+      .catch(() => {});
+  };
+
+  if (redirectMyProducts) {
+    return <Redirect to={`/admin/products/${auth.userId}`} />;
+  }
+
+  let myButton1 = null;
+  if (auth.isLoggedIn) {
+    if (props.myproducts) {
+      myButton1 = (
+        <form onSubmit={onDeleteHandler}>
+          <Button className="btn--addtocart" type="submit">
+            Delete
+          </Button>
+        </form>
+      );
+    } else {
+      myButton1 = (
+        <form onSubmit={onSubmitHandler}>
+          <Button className="btn--addtocart" type="submit">
+            Add to Cart
+          </Button>
+        </form>
+      );
+    }
+  }
+
+  let myButton2 = null;
+  if (auth.isLoggedIn) {
+    if (props.myproducts) {
+      myButton2 = (
+        <Button
+          to={`/admin/editProduct/${props.productId}`}
+          excat="excat"
+          className="btn--details"
+        >
+          Update
+        </Button>
+      );
+    } else {
+      myButton2 = (
+        <Button
+          to={`/products/${props.productId}`}
+          excat="excat"
+          className="btn--details"
+        >
+          Details
+        </Button>
+      );
+    }
   }
 
   return (
@@ -55,20 +124,8 @@ const Product = (props) => {
             <h1>₹ {props.price}</h1>
           </div>
         </div>
-        {auth.isLoggedIn && (
-          <form onSubmit={onSubmitHandler}>
-            <Button className="btn--addtocart" type="submit">
-              Add to Cart
-            </Button>
-          </form>
-        )}
-        <Button
-          to={`/products/${props.productId}`}
-          excat="excat"
-          className="btn--details"
-        >
-          Details
-        </Button>
+        {myButton1}
+        {myButton2}
       </div>
     </React.Fragment>
   );

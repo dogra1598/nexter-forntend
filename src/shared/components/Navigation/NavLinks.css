@@ -24,7 +24,7 @@
   padding: 1rem 3rem 1rem 2rem;
   display: flex;
   align-items: center;
-  width: 20rem;
+  width: 28rem;
 
   background-image: linear-gradient(
     120deg,
@@ -99,6 +99,6 @@
   .nav--links a:visited,
   .nav--links a:active {
     width: 100%;
-    padding: 1rem 3rem 1rem 2rem;
+    padding: 1rem 1rem 1rem 2rem;
   }
 }

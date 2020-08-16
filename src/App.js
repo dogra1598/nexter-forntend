@@ -14,7 +14,8 @@ import Orders from "./shop/pages/Orders";
 import Signup from "./auth/pages/Signup";
 import Login from "./auth/pages/Login";
 import { AuthContext } from "./shared/context/authContext";
-// import "./App.css";
+import AddProduct from "./admin/pages/AddProduct";
+import MyProducts from "./admin/pages/MyProducts";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,6 +47,12 @@ const App = () => {
         </Route>
         <Route path="/products/:productId" exact>
           <SingleProduct />
+        </Route>
+        <Route path="/admin/addProduct" exact>
+          <AddProduct />
+        </Route>
+        <Route path="/admin/products/:userId" exact>
+          <MyProducts />
         </Route>
         <Redirect to="/" />
       </Switch>
