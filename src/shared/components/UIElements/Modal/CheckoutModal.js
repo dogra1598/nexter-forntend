@@ -52,6 +52,7 @@ const CheckoutModal = (props) => {
         null,
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       )
       .then(() => {

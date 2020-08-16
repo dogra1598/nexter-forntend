@@ -92,7 +92,9 @@ const EditProduct = (props) => {
     formData.append("userId", auth.userId);
     formData.append("productId", productId.productId);
 
-    sendRequest("http://localhost:5000/admin/editProduct", "PATCH", formData)
+    sendRequest("http://localhost:5000/admin/editProduct", "PATCH", formData,{
+      Authorization: "Bearer " + auth.token,
+    })
       .then((response) => {
         if (!error) {
           console.log(response);

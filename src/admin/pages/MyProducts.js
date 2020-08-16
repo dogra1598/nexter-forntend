@@ -21,6 +21,7 @@ const MyProducts = () => {
         null,
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       setProducts(response.products);
@@ -29,7 +30,7 @@ const MyProducts = () => {
       }
     };
     fetchData();
-  }, [setProducts, error, sendRequest, auth.userId, setIsMyProducts, isMyProducts]);
+  }, [setProducts, error, sendRequest, auth.userId, setIsMyProducts, isMyProducts, auth.token]);
 
   const updateMyProductsHandler = () => {
     setIsMyProducts(true);

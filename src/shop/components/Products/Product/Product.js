@@ -45,11 +45,12 @@ const Product = (props) => {
     event.preventDefault();
 
     sendRequest(
-      `http://localhost:5000/admin/deleteProduct/${props.productId}`,
+      `http://localhost:5000/admin/deleteProduct/${auth.userId}/${props.productId}`,
       "DELETE",
       null,
       {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
       }
     )
       .then(() => {

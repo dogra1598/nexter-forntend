@@ -21,6 +21,7 @@ const CartItem = (props) => {
       null,
       {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
       }
     )
       .then(() => {
@@ -40,6 +41,7 @@ const CartItem = (props) => {
       null,
       {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
       }
     )
       .then(() => {
@@ -62,6 +64,7 @@ const CartItem = (props) => {
       }),
       {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
       }
     )
       .then(() => {

@@ -26,6 +26,7 @@ const Cart = () => {
         null,
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       setProducts(response.products);
@@ -35,7 +36,7 @@ const Cart = () => {
       }
     };
     fetchData();
-  }, [setProducts, sendRequest, auth.userId, isUpdateCart]);
+  }, [setProducts, sendRequest, auth.userId, isUpdateCart, auth.token]);
 
   const updateCartHandler = () => {
     setIsUpdateCart(true);

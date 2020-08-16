@@ -21,7 +21,7 @@ const AddProduct = (props) => {
   const { showSpinner, error, sendRequest, clearError } = useHttpClient();
   const [isRedirect, setIsRedirect] = useState(false);
 
-  const [formState, inputHandler ] = useForm(
+  const [formState, inputHandler] = useForm(
     {
       title: {
         value: "",
@@ -53,7 +53,9 @@ const AddProduct = (props) => {
     formData.append("image", formState.inputs.image.value);
     formData.append("userId", auth.userId);
 
-    sendRequest("http://localhost:5000/admin/addProduct", "POST", formData)
+    sendRequest("http://localhost:5000/admin/addProduct", "POST", formData, {
+      Authorization: "Bearer " + auth.token,
+    })
       .then(() => {
         if (!error) {
           setIsRedirect(true);

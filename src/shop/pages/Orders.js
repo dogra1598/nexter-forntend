@@ -20,12 +20,13 @@ const Orders = () => {
         null,
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       setOrders(response.orders);
     };
     fetchData();
-  }, [auth.userId, sendRequest, setOrders, error]);
+  }, [auth.userId, sendRequest, setOrders, error, auth.token]);
 
   let myorders = null;
   if (orders) {
