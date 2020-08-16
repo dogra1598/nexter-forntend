@@ -53,6 +53,7 @@ const Input = (props) => {
         id={props.id}
         type={props.type}
         step={props.step}
+        accept={props.accept}
         placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}

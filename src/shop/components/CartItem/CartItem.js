@@ -89,13 +89,13 @@ const CartItem = (props) => {
         </div>
         <div className="cartItem__section2">
           <div className="cart--product--image">
-            <img src={props.image} alt={props.title} />
+            <img src={`http://localhost:5000/${props.image}`} alt={props.title} />
           </div>
         </div>
         <div className="cartItem__section3">
           <div className="changeQuantity">
             <form onSubmit={decreaseQuantityHandler}>
-              <Button className="removeProduct">-</Button>
+              <Button className="removeProduct" disabled={props.quantity === 1}>-</Button>
             </form>
             {props.quantity}
             <form onSubmit={increaseQuantityHandler}>

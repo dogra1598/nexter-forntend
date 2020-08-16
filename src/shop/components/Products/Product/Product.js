@@ -45,7 +45,7 @@ const Product = (props) => {
     event.preventDefault();
 
     sendRequest(
-      `http://localhost:5000/admin/deleteProduct/${auth.userId}/${props.productId}`,
+      `http://localhost:5000/admin/deleteProduct/${props.productId}`,
       "DELETE",
       null,
       {
@@ -85,28 +85,26 @@ const Product = (props) => {
   }
 
   let myButton2 = null;
-  if (auth.isLoggedIn) {
-    if (props.myproducts) {
-      myButton2 = (
-        <Button
-          to={`/admin/editProduct/${props.productId}`}
-          excat="excat"
-          className="btn--details"
-        >
-          Update
-        </Button>
-      );
-    } else {
-      myButton2 = (
-        <Button
-          to={`/products/${props.productId}`}
-          excat="excat"
-          className="btn--details"
-        >
-          Details
-        </Button>
-      );
-    }
+  if (auth.isLoggedIn && props.myproducts) {
+    myButton2 = (
+      <Button
+        to={`/admin/editProduct/${props.productId}`}
+        excat="excat"
+        className="btn--details"
+      >
+        Update
+      </Button>
+    );
+  } else {
+    myButton2 = (
+      <Button
+        to={`/products/${props.productId}`}
+        excat="excat"
+        className="btn--details"
+      >
+        Details
+      </Button>
+    );
   }
 
   return (
@@ -118,7 +116,10 @@ const Product = (props) => {
       <div className="product__container">
         <div className="product">
           <div className="product__image">
-            <img src={props.imageUrl} alt={props.title} />
+            <img
+              src={`http://localhost:5000/${props.imageUrl}`}
+              alt={props.title}
+            />
           </div>
           <div className="product__price">
             <h1>₹ {props.price}</h1>

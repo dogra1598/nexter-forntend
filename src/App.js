@@ -15,6 +15,7 @@ import Signup from "./auth/pages/Signup";
 import Login from "./auth/pages/Login";
 import { AuthContext } from "./shared/context/authContext";
 import AddProduct from "./admin/pages/AddProduct";
+import EditProduct from "./admin/pages/EditProduct";
 import MyProducts from "./admin/pages/MyProducts";
 
 const App = () => {
@@ -50,6 +51,9 @@ const App = () => {
         </Route>
         <Route path="/admin/addProduct" exact>
           <AddProduct />
+        </Route>
+        <Route path="/admin/editProduct/:productId" exact>
+          <EditProduct />
         </Route>
         <Route path="/admin/products/:userId" exact>
           <MyProducts />
