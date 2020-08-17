@@ -67,7 +67,7 @@ const SingleProduct = (props) => {
       </Modal>
       <div className="single-product">
         {product && <ProductDetails product={product} />}
-        {auth.isLoggedIn && (
+        {auth.isLoggedIn && product && (
           <form onSubmit={onSubmitHandler}>
             <Button className="single-product__btn--addtocart" type="submit">
               Add to Cart

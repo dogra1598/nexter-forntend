@@ -1,12 +1,25 @@
 .imageupload {
-    width: 100%;
-    text-align: center;
-    padding: 0 15rem;
+  width: 100%;
+  padding: 0 5rem
 }
 
 .imageupload input {
-    margin: 2rem 0 0 0;
-    width: 100%;
-    font-size: 1.6rem;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+  width: 100%;
+  display: block;
+  height: 3rem;
+  margin: 2rem 0 0rem 0;
+  font-size: 1.6rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 48em) {
+    .imageupload {
+        padding: 0 15rem;
+    }
+}
+
+@media (min-width: 64em) {
+    .imageupload {
+        padding: 0 30rem;
+    }
 }

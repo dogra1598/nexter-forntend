@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 3rem 0 4rem 0;
+}
+
+.pagination ul {
+  list-style: none;
+}
+
+.pagination ul li {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.pagination__btns {
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-color: #225544;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.pagination__active {
+  border-color: #225544;
+  background-color: #225544;
+  color: #fff;
+}
+
+@media (min-width: 48em) {
+  .pagination {
+    margin-left: 28%;
+  }
+}
+
+@media (min-width: 64em) {
+  .pagination {
+    margin-left: 22%;
+  }
+}

@@ -1,5 +1,5 @@
 .myproducts {
-  margin-top: 8rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,10 +13,33 @@
   color: #c5c6c7;
 }
 
+.myproducts__heading {
+  text-align: center;
+  text-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.7);
+  padding: 0 7rem;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+}
+
+.myproducts__heading h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #112d32;
+}
+
 @media (min-width: 48em) {
   .myproducts {
     display: block;
     margin-top: 0;
+  }
+
+  .myproducts__heading {
+    margin-left: 28%;
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+  .myproducts__heading h1 {
+    font-size: 4rem;
   }
 
   .myproducts__products__empty {
@@ -31,6 +54,10 @@
 
 @media (min-width: 64em) {
   .myproducts__products__empty {
-    margin-left: 22%;
+    margin-left: 23%;
+  }
+
+  .myproducts__heading {
+    margin-left: 23%;
   }
 }

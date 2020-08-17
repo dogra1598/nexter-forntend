@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .products__empty {
@@ -34,7 +35,7 @@
 @media (min-width: 48em) {
   .products {
     margin-left: 28%;
-    height: 100vh;
+    margin-top: 10%;
   }
 
   .products__empty {
@@ -50,11 +51,11 @@
 @media (min-width: 64em) {
   .products {
     font-size: 3rem;
-    margin-left: 22%;
+    margin-left: 23%;
   }
 
   .products__empty {
-    margin-left: 22%;
+    margin-left: 23%;
   }
 
   .products__createproduct {
