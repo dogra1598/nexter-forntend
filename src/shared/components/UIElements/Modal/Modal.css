@@ -5,6 +5,8 @@
     transform: translate(-50%, -50%);
     z-index: 700;
     width: 80%;
+
+    transition: all 0.4s;
 }
 
 .modal__header {

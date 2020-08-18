@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { motion } from "framer-motion";
 
 import CartItem from "../components/CartItem/CartItem";
 import Button from "../../shared/components/FormElements/Button/Button";
@@ -87,16 +88,36 @@ const Cart = () => {
       <CheckoutModal show={isCheckout} clicked={clearCheckoutHandler} />
       {cartItems && (
         <main className="cart">
-          <div className="cart--heading">
+          <motion.div
+            className="cart--heading"
+            initial={{ y: "100vh" }}
+            animate={{ y: 0 }}
+            transition={{
+              delay: 0.5,
+              duration: 1,
+              stiffness: 80,
+              type: "spring",
+            }}
+          >
             <h1>Your Cart</h1>
-          </div>
+          </motion.div>
           {cartItems}
-          <div className="cart__totalPrice">
+          <motion.div
+            className="cart__totalPrice"
+            initial={{ y: "100vh" }}
+            animate={{ y: 0 }}
+            transition={{
+              delay: 0.5,
+              duration: 1,
+              stiffness: 80,
+              type: "spring",
+            }}
+          >
             <h1>Cart Total: ₹ {totalPrice.toFixed(2)}</h1>
             <Button className="cart__orderNow" onClick={checkoutHandler}>
               Checkout Now
             </Button>
-          </div>
+          </motion.div>
         </main>
       )}
     </React.Fragment>

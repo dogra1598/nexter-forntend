@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 import Button from "../../FormElements/Button/Button";
 import "./Pagination.css";
@@ -11,15 +12,30 @@ const Pagination = ({ productsPerPage, totalPtoducts, paginate, currPage }) => {
   }
 
   return (
-    <div className="pagination">
+    <motion.div
+      className="pagination"
+      initial={{ y: "100vh" }}
+      animate={{ y: 0 }}
+      transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
+    >
       <ul>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <Button className={`pagination__btns ${currPage === number && "pagination__active"}`} onClick={() => {paginate(number)}} href="!#">{number}</Button>
+            <Button
+              className={`pagination__btns ${
+                currPage === number && "pagination__active"
+              }`}
+              onClick={() => {
+                paginate(number);
+              }}
+              href="!#"
+            >
+              {number}
+            </Button>
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

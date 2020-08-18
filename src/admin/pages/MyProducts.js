@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { motion } from "framer-motion";
 
 import Products from "../../shop/components/Products/Products";
 import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
@@ -54,7 +55,7 @@ const MyProducts = () => {
     currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
   }
 
-  const paginate = PageNumber => setCurrPage(PageNumber);
+  const paginate = (PageNumber) => setCurrPage(PageNumber);
 
   return (
     <React.Fragment>
@@ -63,9 +64,21 @@ const MyProducts = () => {
         {error}
       </Modal>
       <div className="myproducts">
-        <div className="myproducts__heading">
-          <h1>Product Added by You to Shop</h1>
-        </div>
+        {products && (
+          <motion.div
+            className="myproducts__heading"
+            initial={{ y: "100vh" }}
+            animate={{ y: 0 }}
+            transition={{
+              delay: 0.5,
+              duration: 1,
+              stiffness: 80,
+              type: "spring",
+            }}
+          >
+            <h1>Product Added by You to Shop</h1>
+          </motion.div>
+        )}
         {products && (
           <Products
             products={currentProducts}

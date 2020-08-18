@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { motion } from "framer-motion";
 
 import Order from "../components/Order/Order";
 import Spinner from "../../shared/components/UIElements/Spinner/Spinner";
@@ -32,11 +33,7 @@ const Orders = () => {
   if (orders) {
     myorders = orders.map((order) => {
       return (
-        <Order
-          key={order._id}
-          orderId={order._id}
-          products={order.products}
-        />
+        <Order key={order._id} orderId={order._id} products={order.products} />
       );
     });
   }
@@ -48,9 +45,21 @@ const Orders = () => {
         {error}
       </Modal>
       <div className="orders">
-        <div className="orders__heading">
-          <h1>Your Orders</h1>
-        </div>
+        {myorders && (
+          <motion.div
+            className="orders__heading"
+            initial={{ y: "100vh" }}
+            animate={{ y: 0 }}
+            transition={{
+              delay: 0.5,
+              duration: 1,
+              stiffness: 80,
+              type: "spring",
+            }}
+          >
+            <h1>Your Orders</h1>
+          </motion.div>
+        )}
         {myorders}
       </div>
     </React.Fragment>

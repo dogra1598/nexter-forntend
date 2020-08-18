@@ -4,7 +4,6 @@ import Input from "../../shared/components/FormElements/Input/Input";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_EMAIL,
-  VALIDATOR_MINLENGTH,
 } from "../../shared/util/validators";
 import Button from "../../shared/components/FormElements/Button/Button";
 import { useForm } from "../../shared/hooks/formHook";
@@ -84,7 +83,7 @@ const Login = () => {
             type="password"
             label="Password"
             placeholder="Enter Password"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
+            validators={[VALIDATOR_REQUIRE()]}
             errorText="please enter a valid password."
             onInput={inputHandler}
           />

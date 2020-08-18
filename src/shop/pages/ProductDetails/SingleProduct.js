@@ -45,6 +45,7 @@ const SingleProduct = (props) => {
       }),
       {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token
       }
     )
       .then(() => {

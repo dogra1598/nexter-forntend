@@ -79,7 +79,7 @@ const CheckoutModal = (props) => {
         style={{
           transform: props.show
             ? "translate(-50%, -50%)"
-            : "translate(0, -100vh)",
+            : "translate(-50%, -100vh)",
           opacity: props.show ? "1" : "0",
         }}
       >

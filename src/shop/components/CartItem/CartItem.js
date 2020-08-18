@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { motion } from "framer-motion";
 
 import Button from "../../../shared/components/FormElements/Button/Button";
 import Spinner from "../../../shared/components/UIElements/Spinner/Spinner";
@@ -83,7 +84,12 @@ const CartItem = (props) => {
       <Modal show={error} clicked={clearError}>
         {error}
       </Modal>
-      <div className="cartItem">
+      <motion.div
+        className="cartItem"
+        initial={{ y: "100vh" }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
+      >
         <div className="cartItem__section1">
           <div className="cartItem__title__price">
             <h1>{props.title}</h1>
@@ -92,13 +98,18 @@ const CartItem = (props) => {
         </div>
         <div className="cartItem__section2">
           <div className="cart--product--image">
-            <img src={`http://localhost:5000/${props.image}`} alt={props.title} />
+            <img
+              src={`http://localhost:5000/${props.image}`}
+              alt={props.title}
+            />
           </div>
         </div>
         <div className="cartItem__section3">
           <div className="changeQuantity">
             <form onSubmit={decreaseQuantityHandler}>
-              <Button className="removeProduct" disabled={props.quantity === 1}>-</Button>
+              <Button className="removeProduct" disabled={props.quantity === 1}>
+                -
+              </Button>
             </form>
             {props.quantity}
             <form onSubmit={increaseQuantityHandler}>
@@ -111,7 +122,7 @@ const CartItem = (props) => {
             </Button>
           </form>
         </div>
-      </div>
+      </motion.div>
     </React.Fragment>
   );
 };

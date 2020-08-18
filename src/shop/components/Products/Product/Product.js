@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import Button from "../../../../shared/components/FormElements/Button/Button";
 import Spinner from "../../../../shared/components/UIElements/Spinner/Spinner";
@@ -27,6 +28,7 @@ const Product = (props) => {
       }),
       {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token
       }
     )
       .then(() => {
@@ -114,7 +116,12 @@ const Product = (props) => {
       <Modal show={error} clicked={clearError}>
         {error}
       </Modal>
-      <div className="product__container">
+      <motion.div
+        className="product__container"
+        initial={{ y: "100vh" }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
+      >
         <div className="product">
           <div className="product__image">
             <img
@@ -128,7 +135,7 @@ const Product = (props) => {
         </div>
         {myButton1}
         {myButton2}
-      </div>
+      </motion.div>
     </React.Fragment>
   );
 };

@@ -119,7 +119,7 @@ const Signup = () => {
             type="password"
             label="Confirm Password"
             placeholder="Confirm Your Password"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
+            validators={[VALIDATOR_REQUIRE()]}
             errorText="please enter the above password."
             onInput={inputHandler}
           />
