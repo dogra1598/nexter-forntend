@@ -14,8 +14,8 @@ const Pagination = ({ productsPerPage, totalPtoducts, paginate, currPage }) => {
   return (
     <motion.div
       className="pagination"
-      initial={{ y: "100vh" }}
-      animate={{ y: 0 }}
+      initial={{ x: "100vw" }}
+      animate={{ x: 0 }}
       transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
     >
       <ul>

@@ -92,7 +92,7 @@ const EditProduct = (props) => {
     formData.append("userId", auth.userId);
     formData.append("productId", productId.productId);
 
-    sendRequest("http://localhost:5000/admin/editProduct", "PATCH", formData,{
+    sendRequest("http://localhost:5000/admin/editProduct", "PATCH", formData, {
       Authorization: "Bearer " + auth.token,
     })
       .then((response) => {
@@ -115,9 +115,11 @@ const EditProduct = (props) => {
         {error}
       </Modal>
       <div className="addproduct">
-        <div className="addproduct__heading">
-          <h1>Update Product</h1>
-        </div>
+        {product && (
+          <div className="addproduct__heading">
+            <h1>Update Product</h1>
+          </div>
+        )}
         {!showSpinner && product && (
           <form className="addproduct__form" onSubmit={onSubmitHandler}>
             {auth.isLoggedIn && (

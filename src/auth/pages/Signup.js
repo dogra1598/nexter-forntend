@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -74,7 +75,12 @@ const Signup = () => {
       <Modal show={error} clicked={clearError}>
         {error}
       </Modal>
-      <div className="auth">
+      <motion.div
+        className="auth"
+        initial={{ x: "-100vw" }}
+        animate={{ x: 0 }}
+        transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
+      >
         <div className="auth__heading">
           <h1>Signup</h1>
         </div>
@@ -136,7 +142,7 @@ const Signup = () => {
             </Button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </React.Fragment>
   );
 };

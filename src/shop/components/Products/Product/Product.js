@@ -28,7 +28,7 @@ const Product = (props) => {
       }),
       {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + auth.token
+        Authorization: "Bearer " + auth.token,
       }
     )
       .then(() => {
@@ -118,8 +118,8 @@ const Product = (props) => {
       </Modal>
       <motion.div
         className="product__container"
-        initial={{ y: "100vh" }}
-        animate={{ y: 0 }}
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
         transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
       >
         <div className="product">
@@ -135,6 +135,9 @@ const Product = (props) => {
         </div>
         {myButton1}
         {myButton2}
+        <div className="product__title">
+          <h2>{props.title}</h2>
+        </div>
       </motion.div>
     </React.Fragment>
   );

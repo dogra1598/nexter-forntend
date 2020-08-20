@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { motion } from "framer-motion";
 
 import Input from "../../shared/components/FormElements/Input/Input";
 import {
@@ -60,7 +61,12 @@ const Login = () => {
       <Modal show={error} clicked={clearError}>
         {error}
       </Modal>
-      <div className="auth">
+      <motion.div
+        className="auth"
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
+        transition={{ delay: 0.5, duration: 1, stiffness: 80, type: "spring" }}
+      >
         <div className="auth__heading">
           <h1>Login</h1>
         </div>
@@ -100,7 +106,7 @@ const Login = () => {
             </Button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </React.Fragment>
   );
 };

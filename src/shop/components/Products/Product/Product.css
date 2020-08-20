@@ -1,5 +1,9 @@
 .product__container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .product {
@@ -92,6 +96,12 @@
   z-index: 1;
   opacity: 1;
   filter: none;
+}
+
+.product__title {
+  width: 15rem;
+  text-align: center;
+  color: #225544;
 }
 
 @media (min-width: 64em) {
