@@ -47,14 +47,14 @@ const CheckoutModal = (props) => {
     event.preventDefault();
 
     sendRequest(
-        `http://localhost:5000/orders/${auth.userId}`,
-        "POST",
-        null,
-        {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        }
-      )
+      `${process.env.REACT_APP_BACKEND_URL}/orders/${auth.userId}`,
+      "POST",
+      null,
+      {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      }
+    )
       .then(() => {
         if (!error) {
           setIsRedirect(true);
@@ -65,7 +65,7 @@ const CheckoutModal = (props) => {
 
   if (isRedirect) {
     return <Redirect to={`/orders/${auth.userId}`} />;
-  }  
+  }
 
   return (
     <React.Fragment>

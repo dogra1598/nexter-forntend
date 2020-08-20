@@ -6,7 +6,7 @@ const ProductDetails = (props) => {
   return (
     <div className="single-product">
       <div className="single-product__image">
-        <img src={`http://localhost:5000/${props.product.imageUrl}`} alt={props.product.title} />
+        <img src={`${process.env.REACT_APP_ASSET_URL}/${props.product.imageUrl}`} alt={props.product.title} />
       </div>
       <div className="single-product__title">
         <h1>{props.product.title}</h1>

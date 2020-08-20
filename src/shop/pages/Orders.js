@@ -16,7 +16,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
-        `http://localhost:5000/orders/${auth.userId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/orders/${auth.userId}`,
         "GET",
         null,
         {

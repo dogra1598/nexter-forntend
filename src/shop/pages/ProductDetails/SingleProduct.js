@@ -21,7 +21,7 @@ const SingleProduct = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
-        `http://localhost:5000/products/${productId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/products/${productId}`,
         "GET",
         null,
         {
@@ -37,7 +37,7 @@ const SingleProduct = (props) => {
     event.preventDefault();
 
     sendRequest(
-      "http://localhost:5000/cart",
+      process.env.REACT_APP_BACKEND_URL + "/cart",
       "POST",
       JSON.stringify({
         productId: product._id,

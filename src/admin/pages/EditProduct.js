@@ -48,7 +48,7 @@ const EditProduct = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
-        `http://localhost:5000/products/${productId.productId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/products/${productId.productId}`,
         "GET",
         null,
         {
@@ -92,7 +92,7 @@ const EditProduct = (props) => {
     formData.append("userId", auth.userId);
     formData.append("productId", productId.productId);
 
-    sendRequest("http://localhost:5000/admin/editProduct", "PATCH", formData, {
+    sendRequest(process.env.REACT_APP_BACKEND_URL + "/admin/editProduct", "PATCH", formData, {
       Authorization: "Bearer " + auth.token,
     })
       .then((response) => {

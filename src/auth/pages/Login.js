@@ -37,7 +37,7 @@ const Login = () => {
     event.preventDefault();
 
     sendRequest(
-      "http://localhost:5000/login",
+      process.env.REACT_APP_BACKEND_URL + "/login",
       "POST",
       JSON.stringify({
         email: formState.inputs.email.value,

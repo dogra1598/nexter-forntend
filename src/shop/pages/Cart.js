@@ -22,7 +22,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
-        `http://localhost:5000/cart/${auth.userId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/cart/${auth.userId}`,
         "GET",
         null,
         {

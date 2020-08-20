@@ -45,7 +45,7 @@ const Signup = () => {
     event.preventDefault();
 
     sendRequest(
-      "http://localhost:5000/signup",
+      process.env.REACT_APP_BACKEND_URL + "/signup",
       "POST",
       JSON.stringify({
         username: formState.inputs.username.value,

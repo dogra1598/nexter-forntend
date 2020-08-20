@@ -17,7 +17,7 @@ const CartItem = (props) => {
     event.preventDefault();
 
     sendRequest(
-      `http://localhost:5000/deleteFromCart/${auth.userId}/${props.productId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/deleteFromCart/${auth.userId}/${props.productId}`,
       "DELETE",
       null,
       {
@@ -37,7 +37,7 @@ const CartItem = (props) => {
     event.preventDefault();
 
     sendRequest(
-      `http://localhost:5000/decreaseQuantity/${auth.userId}/${props.productId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/decreaseQuantity/${auth.userId}/${props.productId}`,
       "DELETE",
       null,
       {
@@ -57,7 +57,7 @@ const CartItem = (props) => {
     event.preventDefault();
 
     sendRequest(
-      "http://localhost:5000/cart",
+      process.env.REACT_APP_BACKEND_URL + "/cart",
       "POST",
       JSON.stringify({
         productId: props.productId,
@@ -99,7 +99,7 @@ const CartItem = (props) => {
         <div className="cartItem__section2">
           <div className="cart--product--image">
             <img
-              src={`http://localhost:5000/${props.image}`}
+              src={`${process.env.REACT_APP_ASSET_URL}/${props.image}`}
               alt={props.title}
             />
           </div>

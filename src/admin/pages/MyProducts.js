@@ -20,7 +20,7 @@ const MyProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
-        `http://localhost:5000/admin/products/${auth.userId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/admin/products/${auth.userId}`,
         "GET",
         null,
         {

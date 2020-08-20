@@ -20,7 +20,7 @@ const Product = (props) => {
     event.preventDefault();
 
     sendRequest(
-      "http://localhost:5000/cart",
+      process.env.REACT_APP_BACKEND_URL + "/cart",
       "POST",
       JSON.stringify({
         productId: props.productId,
@@ -47,7 +47,7 @@ const Product = (props) => {
     event.preventDefault();
 
     sendRequest(
-      `http://localhost:5000/admin/deleteProduct/${auth.userId}/${props.productId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/admin/deleteProduct/${auth.userId}/${props.productId}`,
       "DELETE",
       null,
       {
@@ -125,7 +125,7 @@ const Product = (props) => {
         <div className="product">
           <div className="product__image">
             <img
-              src={`http://localhost:5000/${props.imageUrl}`}
+              src={`${process.env.REACT_APP_ASSET_URL}/${props.imageUrl}`}
               alt={props.title}
             />
           </div>
