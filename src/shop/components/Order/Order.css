@@ -10,6 +10,10 @@
   padding: 2rem;
 }
 
+.order__section2 {
+  color: #00C851;
+}
+
 .order__id {
   font-size: 1.4rem;
   font-weight: 700;
@@ -28,14 +32,6 @@
   font-size: 1.4rem;
 }
 
-.order__btn__invoice {
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  border: 1px solid #112d32;
-  background-color: #112d32;
-  color: #fff;
-}
-
 @media (min-width: 48em) {
   .order__id {
     font-size: 2.5rem;
@@ -47,23 +43,5 @@
 
   .order__product--quantity {
     font-size: 1.8rem;
-  }
-
-  .order__btn__invoice {
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
-  }
-}
-
-@media (min-width: 64em) {
-  .order__btn__invoice {
-    background-color: transparent;
-    color: #112d32;
-
-    transition: all 0.2s;
-  }
-  .order__btn__invoice:hover {
-    background-color: #112d32;
-    color: #fff;
   }
 }

@@ -144,4 +144,8 @@
   .btn--details:active {
     transform: translate(-50%, 0);
   }
+
+  .product__title h2 {
+    font-size: 1.6rem;
+  }
 }

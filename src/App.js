@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,17 +7,21 @@ import {
 } from "react-router-dom";
 
 import Navigation from "./shared/components/Navigation/Navbar";
-import Home from "./shop/pages/Home";
-import Cart from "./shop/pages/Cart";
-import SingleProduct from "./shop/pages/ProductDetails/SingleProduct";
-import Orders from "./shop/pages/Orders";
-import Signup from "./auth/pages/Signup";
-import Login from "./auth/pages/Login";
 import { AuthContext } from "./shared/context/authContext";
-import { useAuth } from "./shared/hooks/authHook"; 
-import AddProduct from "./admin/pages/AddProduct";
-import EditProduct from "./admin/pages/EditProduct";
-import MyProducts from "./admin/pages/MyProducts";
+import { useAuth } from "./shared/hooks/authHook";
+import Spinner from "./shared/components/UIElements/Spinner/Spinner";
+
+const Home = React.lazy(() => import("./shop/pages/Home"));
+const Cart = React.lazy(() => import("./shop/pages/Cart"));
+const SingleProduct = React.lazy(() =>
+  import("./shop/pages/ProductDetails/SingleProduct")
+);
+const Orders = React.lazy(() => import("./shop/pages/Orders"));
+const Signup = React.lazy(() => import("./auth/pages/Signup"));
+const Login = React.lazy(() => import("./auth/pages/Login"));
+const AddProduct = React.lazy(() => import("./admin/pages/AddProduct"));
+const EditProduct = React.lazy(() => import("./admin/pages/EditProduct"));
+const MyProducts = React.lazy(() => import("./admin/pages/MyProducts"));
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();
@@ -83,7 +87,9 @@ const App = () => {
     >
       <Router>
         <Navigation />
-        <main>{routes}</main>
+        <main>
+          <Suspense fallback={<Spinner show={true} />}>{routes}</Suspense>
+        </main>
       </Router>
     </AuthContext.Provider>
   );
