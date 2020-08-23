@@ -53,7 +53,7 @@ const AddProduct = (props) => {
     formData.append("image", formState.inputs.image.value);
     formData.append("userId", auth.userId);
 
-    sendRequest(process.env.REACT_APP_BACKEND_URL + "/addProduct", "POST", formData, {
+    sendRequest(process.env.REACT_APP_BACKEND_URL + "/admin/addProduct", "POST", formData, {
       Authorization: "Bearer " + auth.token,
     })
       .then(() => {

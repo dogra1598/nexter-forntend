@@ -14,6 +14,21 @@
   color: #112d32;
 }
 
+.orders__empty {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2.5rem;
+  color: #c5c6c7;
+}
+
+.orders__empty h1 {
+  text-align: center;
+}
+
 @media (min-width: 48em) {
   .orders {
     margin-left: 28%;
@@ -22,10 +37,19 @@
   .orders__heading h1 {
     font-size: 5rem;
   }
+
+  .orders__empty {
+    margin-left: 28%;
+    font-size: 3rem;
+  }
 }
 
 @media (min-width: 64em) {
   .orders {
+    margin-left: 23%;
+  }
+
+  .orders__empty {
     margin-left: 23%;
   }
 }

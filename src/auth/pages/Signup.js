@@ -57,8 +57,8 @@ const Signup = () => {
         "Content-Type": "application/json",
       }
     )
-      .then(() => {
-        if (!error) {
+      .then((response) => {
+        if (!response.error) {
           setIsRedirect(true);
         }
       })

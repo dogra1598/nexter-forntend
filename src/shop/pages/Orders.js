@@ -36,6 +36,14 @@ const Orders = () => {
         <Order key={order._id} orderId={order._id} products={order.products} />
       );
     });
+
+    if (myorders.length === 0) {
+      return (
+        <div className="orders__empty">
+          <h1>No orders Found!</h1>
+        </div>
+      );
+    }
   }
 
   return (

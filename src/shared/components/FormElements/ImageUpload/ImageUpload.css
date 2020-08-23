@@ -1,6 +1,6 @@
 .imageupload {
   width: 100%;
-  padding: 0 5rem
+  padding: 0 5rem;
 }
 
 .imageupload input {
@@ -13,13 +13,14 @@
 }
 
 @media (min-width: 48em) {
-    .imageupload {
-        padding: 0 15rem;
-    }
+  .imageupload {
+    width: 100%;
+    padding: 0 15rem;
+  }
 }
 
 @media (min-width: 64em) {
-    .imageupload {
-        padding: 0 30rem;
-    }
+  .imageupload {
+    padding: 0 30rem;
+  }
 }

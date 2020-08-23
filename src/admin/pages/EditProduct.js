@@ -48,11 +48,12 @@ const EditProduct = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/products/${productId.productId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/admin/editProduct/${productId.productId}`,
         "GET",
         null,
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       setProduct(response.product);
@@ -79,7 +80,7 @@ const EditProduct = (props) => {
       );
     };
     fetchData();
-  }, [props.edit, productId, sendRequest, setFormData]);
+  }, [props.edit, productId, sendRequest, setFormData, auth.token]);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
